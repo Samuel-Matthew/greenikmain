@@ -1,0 +1,31 @@
+@import 'tailwindcss';
+@import './style.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+  
+  --color-primary: #10b981;
+  --color-secondary: #865f46;
+
+   --color-greenik-400: #00e690;
+  --color-greenik-500: #00d284;
+  --color-greenik-600: #00b370;
+  --color-greenik-900: #0a3323;
+
+  --color-dark-bg: #0a0a0a;
+  --color-dark-card: #141414;
+  --color-dark-border: #262626;
+  
+
+  /*
+    3. Font Family (Overrides + Custom Display font)
+    We define the stack using CSS custom properties.
+    You must ensure 'Inter' and 'Pacifico' are loaded via @font-face rules elsewhere.
+  */
+  --default-font-family: Inter, sans-serif; /* Overrides the default font-sans */
+  --font-display: Pacifico, serif; /* Custom font utility: 'font-display' */
+}
