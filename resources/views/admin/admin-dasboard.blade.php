@@ -2,10 +2,10 @@
 <html lang="en" class="dark">
 
 @php
-    // Ensure categories variable is available
-    if (!isset($categories)) {
-        $categories = \App\Models\ProductCategory::all();
-    }
+// Ensure categories variable is available
+if (!isset($categories)) {
+    $categories = \App\Models\ProductCategory::all();
+}
 @endphp
 
 <head>
@@ -13,6 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Greenik | Admin Portal</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <!-- Tailwind CSS -->
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <!-- FontAwesome -->

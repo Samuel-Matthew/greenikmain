@@ -74,7 +74,7 @@
     <!-- Customers Table -->
     <div class="bg-dark-card rounded-xl border border-dark-border overflow-hidden">
         <table class="w-full text-left border-collapse">
-            <thead class="bg-gray-800 text-gray-400 text-xs uppercase">
+            <thead class="bg-[#309983]/10 text-gray-400 text-xs uppercase">
                 <tr>
                     <th class="p-4">Customer</th>
                     <th class="p-4">Contact Info</th>
@@ -87,7 +87,7 @@
             </thead>
             <tbody class="divide-y divide-gray-800 text-sm">
                 <template x-for="customer in filteredCustomers" :key="customer.id">
-                    <tr class="hover:bg-gray-800/50 transition duration-150 group">
+                    <tr class="hover:bg-[#309983]/10 transition duration-150 group">
                         <!-- Name & Avatar -->
                         <td class="p-4">
                             <div class="flex items-center gap-3">
@@ -145,7 +145,7 @@
             x-transition:leave="translate-x-0" x-transition:leave-end="translate-x-full">
 
             <!-- Modal Header -->
-            <div class="flex items-center justify-between p-6 border-b border-dark-border bg-gray-900">
+            <div class="flex items-center justify-between p-6 border-b border-dark-border bg-[#309983]/10">
                 <h3 class="text-xl font-bold text-white">Customer Profile</h3>
                 <button @click="activeCustomer = null" class="text-gray-400 hover:text-white">
                     <i class="fas fa-times text-xl"></i>
@@ -210,43 +210,36 @@
                 <div class="p-6 pt-0">
                     <h4 class="text-white font-bold mb-4 border-b border-dark-border pb-2">Recent Orders</h4>
 
-                    <div class="space-y-3">
-                        <!-- Mock Order History Loop -->
-                        <div class="flex items-center justify-between bg-dark-bg p-3 rounded border border-dark-border">
-                            <div class="flex items-center gap-3">
-                                <div
-                                    class="h-10 w-10 rounded bg-gray-800 flex items-center justify-center text-greenik-500">
-                                    <i class="fas fa-box"></i>
+                    <div class="space-y-3" x-show="customerOrders.length > 0">
+                        <!-- Live Orders Loop -->
+                        <template x-for="order in customerOrders" :key="order.id">
+                            <div
+                                class="flex items-center justify-between bg-dark-bg p-3 rounded border border-dark-border hover:border-gray-700 transition">
+                                <div class="flex items-center gap-3">
+                                    <div :class="order.status_color_bg"
+                                        class="h-10 w-10 rounded flex items-center justify-center">
+                                        <i class="fas fa-box text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-white" x-text="order.order_number"></p>
+                                        <p class="text-xs text-gray-500" x-text="order.date"></p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="text-sm font-bold text-white">#ORD-9921</p>
-                                    <p class="text-xs text-gray-500">Nov 24, 2024</p>
+                                <div class="text-right">
+                                    <p class="text-white font-medium" x-text="order.total"></p>
+                                    <span :class="[order.status_color_bg, order.status_color_text]"
+                                        class="text-[10px] px-2 py-0.5 rounded" x-text="order.status"></span>
                                 </div>
                             </div>
-                            <div class="text-right">
-                                <p class="text-white font-medium">$1,200.00</p>
-                                <span
-                                    class="text-[10px] bg-green-900/30 text-green-400 px-2 py-0.5 rounded">Delivered</span>
-                            </div>
-                        </div>
+                        </template>
+                    </div>
 
-                        <div class="flex items-center justify-between bg-dark-bg p-3 rounded border border-dark-border">
-                            <div class="flex items-center gap-3">
-                                <div
-                                    class="h-10 w-10 rounded bg-gray-800 flex items-center justify-center text-gray-400">
-                                    <i class="fas fa-box"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-bold text-white">#ORD-9850</p>
-                                    <p class="text-xs text-gray-500">Oct 12, 2024</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-white font-medium">$450.00</p>
-                                <span
-                                    class="text-[10px] bg-green-900/30 text-green-400 px-2 py-0.5 rounded">Delivered</span>
-                            </div>
-                        </div>
+                    <div class="text-center text-gray-400 py-4" x-show="customerOrders.length === 0 && !ordersLoading">
+                        <p class="text-sm">No orders yet</p>
+                    </div>
+
+                    <div class="text-center text-gray-400 py-4" x-show="ordersLoading">
+                        <p class="text-sm"><i class="fas fa-spinner fa-spin mr-2"></i>Loading orders...</p>
                     </div>
                 </div>
 
@@ -271,6 +264,8 @@
             },
             loading: true,
             error: null,
+            customerOrders: [],
+            ordersLoading: false,
 
             async init() {
                 try {
@@ -307,8 +302,26 @@
                 });
             },
 
-            viewCustomer(customer) {
+            async viewCustomer(customer) {
                 this.activeCustomer = JSON.parse(JSON.stringify(customer));
+
+                // Fetch customer orders from database
+                try {
+                    this.ordersLoading = true;
+                    const response = await fetch(`/admin/api/customers/${customer.id}/orders`);
+
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch orders');
+                    }
+
+                    const data = await response.json();
+                    this.customerOrders = data.orders || [];
+                } catch (err) {
+                    console.error('Error fetching customer orders:', err);
+                    this.customerOrders = [];
+                } finally {
+                    this.ordersLoading = false;
+                }
             },
 
             toggleBlock(customer) {

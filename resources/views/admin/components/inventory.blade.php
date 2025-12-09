@@ -106,7 +106,7 @@
     <!-- Inventory Table -->
     <div class="bg-dark-card rounded-xl border border-dark-border overflow-hidden">
         <table class="w-full text-left border-collapse">
-            <thead class="bg-gray-800 text-gray-400 text-xs uppercase">
+            <thead class="bg-[#309983]/10 text-gray-400 text-xs uppercase">
                 <tr>
                     <th class="p-4">Item Details</th>
                     <th class="p-4">SKU</th>
@@ -118,7 +118,7 @@
             </thead>
             <tbody class="divide-y divide-gray-800 text-sm">
                 <template x-for="item in filteredInventory" :key="item.sku">
-                    <tr class="hover:bg-gray-800/50 transition duration-150">
+                    <tr class="hover:bg-[#309983]/10 transition duration-150">
                         <!-- Item -->
                         <td class="p-4">
                             <div class="flex items-center gap-3">

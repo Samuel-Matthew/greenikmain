@@ -149,6 +149,7 @@ Route::middleware(['IsAdmin'])->group(function () {
         Route::get('/orders', [AdminController::class, 'apiOrders'])->name('admin.api.orders');
         Route::get('/transactions', [AdminController::class, 'apiTransactions'])->name('admin.api.transactions');
         Route::get('/customers', [AdminController::class, 'apiCustomers'])->name('admin.api.customers');
+        Route::get('/customers/{customerId}/orders', [AdminController::class, 'apiCustomerOrders'])->name('admin.api.customer.orders');
         Route::get('/inventory', [AdminController::class, 'apiInventory'])->name('admin.api.inventory');
     });
 });

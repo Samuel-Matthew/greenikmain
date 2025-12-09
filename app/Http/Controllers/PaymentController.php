@@ -62,7 +62,8 @@ class PaymentController extends Controller
                             'order_id' => $order->id,
                             'user_id' => auth()->id(),
                         ],
-                        'channels' => ['card']
+                        'channels' => ['bank_transfer', 'card', 'ussd'],
+
                     ]);
 
             if (!$response->successful()) {
@@ -82,7 +83,8 @@ class PaymentController extends Controller
                 ],
                 [
                     'amount' => $validated['amount'],
-                    'status' => 'pending',
+                    // change to pending later
+                    'status' => 'failed',
                     'payment_method' => 'paystack',
                     'reference' => $data['data']['reference'] ?? null
                 ]
@@ -287,7 +289,7 @@ class PaymentController extends Controller
                 'subtotal' => 0,
                 'shipping_fee' => 15.00,
                 'tax' => 0,
-                'status' => 'processing'
+                'status' => 'cancelled'
             ]);
 
             // Add order items
@@ -351,7 +353,8 @@ class PaymentController extends Controller
                 'order_id' => $order->id,
                 'user_id' => auth()->id(),
                 'amount' => $total,
-                'status' => 'pending',
+                // change to pending later
+                'status' => 'failed',
                 'payment_method' => 'paystack',
                 'reference' => $reference
             ]);

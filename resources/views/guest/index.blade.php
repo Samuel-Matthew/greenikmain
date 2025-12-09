@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GREENIK - Home</title>
     <link rel="stylesheet" href="./src/output.css">
-    <link rel="stylesheet" href="./src/mycss.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <!-- aos -->

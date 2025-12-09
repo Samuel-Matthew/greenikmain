@@ -106,7 +106,7 @@
             </thead>
             <tbody class="divide-y divide-gray-800 text-sm">
                 <template x-for="txn in filteredTransactions" :key="txn.id">
-                    <tr class="hover:bg-gray-800/50 transition duration-150" @click="viewReceipt(txn)">
+                    <tr class="hover:bg-[#309983]/10 transition duration-150" @click="viewReceipt(txn)">
                         <!-- ID -->
                         <td class="p-4 font-mono text-gray-300"
                             x-text="(txn.reference || 'TXN000').substring(0, 8) + '...'"></td>

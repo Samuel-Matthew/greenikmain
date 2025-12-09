@@ -81,7 +81,7 @@
     <!-- MAIN ORDERS TABLE -->
     <div class="bg-dark-card rounded-xl border border-dark-border overflow-hidden">
         <table class="w-full text-left border-collapse">
-            <thead class="bg-gray-800 text-gray-400 text-xs uppercase">
+            <thead class="bg-[#309983]/10 text-gray-400 text-xs uppercase">
                 <tr>
                     <th class="p-4">Order ID</th>
                     <th class="p-4">Customer</th>
@@ -94,7 +94,7 @@
             </thead>
             <tbody class="divide-y divide-gray-800 text-sm">
                 <template x-for="order in filteredOrders" :key="order.id">
-                    <tr class="hover:bg-gray-800/50 transition duration-150">
+                    <tr class="hover:bg-[#309983]/10 transition duration-150">
                         <td class="p-4 text-greenik-500 font-mono font-medium" x-text="order.order_number"></td>
                         <td class="p-4">
                             <div class="font-medium text-white" x-text="order.first_name + ' ' + order.last_name"></div>
@@ -175,7 +175,7 @@
             class="absolute inset-y-0 right-0 max-w-2xl w-full bg-dark-card border-l border-dark-border shadow-2xl flex flex-col transform transition-transform duration-300">
 
             <!-- Modal Header -->
-            <div class="flex items-center justify-between p-6 border-b border-dark-border bg-gray-900">
+            <div class="flex items-center justify-between p-6 border-b border-dark-border bg-[#309983]/10">
                 <div>
                     <h3 class="text-xl font-bold text-white flex items-center gap-3">
                         <span id="modalOrderId"></span>
@@ -256,7 +256,7 @@
             </div>
 
             <!-- Modal Footer -->
-            <div class="p-6 border-t border-dark-border bg-gray-900 flex justify-between">
+            <div class="p-6 border-t border-dark-border bg-[#309983]/10 flex justify-between">
                 <button class="text-gray-400 hover:text-white flex items-center gap-2">
                     <i class="fas fa-print"></i> Print Invoice
                 </button>

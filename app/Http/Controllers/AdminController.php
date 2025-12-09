@@ -291,4 +291,53 @@ class AdminController extends Controller
             ]
         ]);
     }
+
+    /**
+     * Fetch orders for a specific customer
+     */
+    public function apiCustomerOrders($customerId)
+    {
+        $orders = Order::where('user_id', $customerId)
+            ->with('items.product', 'transaction')
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->map(function ($order) {
+                $statusColors = [
+                    'pending' => ['bg' => 'bg-yellow-900/30', 'text' => 'text-yellow-400'],
+                    'processing' => ['bg' => 'bg-blue-900/30', 'text' => 'text-blue-400'],
+                    'shipped' => ['bg' => 'bg-purple-900/30', 'text' => 'text-purple-400'],
+                    'delivered' => ['bg' => 'bg-green-900/30', 'text' => 'text-green-400'],
+                    'cancelled' => ['bg' => 'bg-red-900/30', 'text' => 'text-red-400'],
+                    'failed' => ['bg' => 'bg-red-900/30', 'text' => 'text-red-400'],
+                ];
+
+                $status = strtolower($order->status) ?? 'pending';
+                $colors = $statusColors[$status] ?? $statusColors['pending'];
+
+                return [
+                    'id' => $order->id,
+                    'order_number' => $order->order_number ?? '#ORD-' . str_pad($order->id, 4, '0', STR_PAD_LEFT),
+                    'total' => '₦' . number_format($order->total, 2),
+                    'total_raw' => $order->total,
+                    'status' => ucfirst($status),
+                    'date' => $order->created_at->format('M d, Y'),
+                    'created_at' => $order->created_at,
+                    'status_color_bg' => $colors['bg'],
+                    'status_color_text' => $colors['text'],
+                    'items_count' => $order->items->count(),
+                    'items' => $order->items->map(function ($item) {
+                        return [
+                            'id' => $item->id,
+                            'product_name' => $item->product?->name ?? 'Unknown',
+                            'quantity' => $item->quantity,
+                            'price' => $item->price,
+                        ];
+                    })->toArray(),
+                ];
+            });
+
+        return response()->json([
+            'orders' => $orders->values()->toArray(),
+        ]);
+    }
 }

@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transaction Failed - GREENIK</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link rel="stylesheet" href="./src/output.css">
     <link rel="stylesheet" href="./src/mycss.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -99,16 +101,16 @@
                     <ul class="divide-y divide-gray-800">
                         @foreach ($order->items as $item)
                         @php
-                        $images = $item->product->image_url ?? [];
-                        $imageFile = '';
-                        if (is_array($images) && count($images) > 0) {
-                        $imageFile = $images[0];
-                        if (!str_starts_with($imageFile, 'http')) {
-                        $imageFile = asset('storage/' . $imageFile);
-                        }
-                        } else {
-                        $imageFile = 'https://via.placeholder.com/100';
-                        }
+    $images = $item->product->image_url ?? [];
+    $imageFile = '';
+    if (is_array($images) && count($images) > 0) {
+        $imageFile = $images[0];
+        if (!str_starts_with($imageFile, 'http')) {
+            $imageFile = asset('storage/' . $imageFile);
+        }
+    } else {
+        $imageFile = 'https://via.placeholder.com/100';
+    }
                         @endphp
                         <li class="p-6 flex items-center opacity-75"> <!-- Added opacity to indicate not active -->
                             <div
@@ -164,10 +166,10 @@
                 <div class="bg-red-500/5 border border-red-500/30 rounded-xl p-6">
                     <h3 class="text-white font-bold mb-4">Payment Summary</h3>
                     @php
-                    $subtotal = $order->subtotal;
-                    $shipping = $order->shipping_fee;
-                    $tax = $order->tax;
-                    $total = $order->total;
+$subtotal = $order->subtotal;
+$shipping = $order->shipping_fee;
+$tax = $order->tax;
+$total = $order->total;
                     @endphp
                     <div class="space-y-3">
                         <div class="flex justify-between text-sm text-gray-400">
