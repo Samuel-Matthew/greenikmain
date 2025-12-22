@@ -82,6 +82,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/orders/{order}', [OrderController::class, 'details'])->name('order.details');
 
+    Route::get('/orders/{order}/failed', [OrderController::class, 'failedOrder'])->name('order.failed');
+
     Route::get('/orders/{order}/invoice', [OrderController::class, 'invoice'])->name('order.invoice');
 
     Route::get('/order-confirmed/{id}', [OrderController::class, 'orderConfirmed'])->name('user.orderconfirmedq');

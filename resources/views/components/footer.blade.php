@@ -2,24 +2,29 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-                <h3 class="text-2xl font-display text-primary mb-4">GREENIK</h3>
+                <!-- <h3 class="text-2xl font-display text-primary mb-4">GREENIK</h3> -->
+
+                <h1 class="text-2xl font-bold italic text-greenik-500 tracking-wider mb-4">
+                    <i class="fas fa-leaf"></i>
+                    <span x-show="sidebarOpen">GREENIK</span>
+                </h1>
                 <p class="text-gray-400 mb-6">Leading the clean energy revolution with innovative solar, wind, and
                     sustainable power solutions for homes worldwide.</p>
                 <div class="flex space-x-4">
                     <div
-                        class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
+                        class="w-10 h-10 bg-[#309983]/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
                         <i class="ri-facebook-fill"></i>
                     </div>
                     <div
-                        class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
+                        class="w-10 h-10 bg-[#309983]/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
                         <i class="ri-twitter-fill"></i>
                     </div>
                     <div
-                        class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
+                        class="w-10 h-10 bg-[#309983]/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
                         <i class="ri-instagram-fill"></i>
                     </div>
                     <div
-                        class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
+                        class="w-10 h-10 bg-[#309983]/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
                         <i class="ri-linkedin-fill"></i>
                     </div>
                 </div>

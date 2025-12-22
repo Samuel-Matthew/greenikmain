@@ -39,11 +39,12 @@
     <!-- User Info -->
     <div class="p-4 border-t border-dark-border">
         <div class="flex items-center gap-3">
-            <img src="https://ui-avatars.com/api/?name=Admin+User&background=00d284&color=000"
+            <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->first_name . ' ' . auth()->user()->last_name) }}&background=00d284&color=000"
                 class="w-9 h-9 rounded-full">
             <div x-show="sidebarOpen">
-                <p class="text-sm font-semibold text-white">Alex Admin</p>
-                <p class="text-xs text-gray-500">Super Admin</p>
+                <p class="text-sm font-semibold text-white">{{ auth()->user()->first_name ?? 'Admin' }}
+                    {{ auth()->user()->last_name ?? 'User' }}</p>
+                <p class="text-xs text-gray-500">{{ ucfirst(auth()->user()->role ?? 'admin') }}</p>
             </div>
         </div>
 

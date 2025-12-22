@@ -4,7 +4,11 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <h1 class="text-2xl font-display text-primary">GREENIK</h1>
+                    <!-- <h1 class="text-2xl font-display text-primary">GREENIK</h1> -->
+                    <h1 class="text-2xl font-bold italic text-greenik-500 tracking-wider">
+                        <i class="fas fa-leaf"></i>
+                        <span x-show="sidebarOpen">GREENIK</span>
+                    </h1>
                 </div>
                 <!-- Desktop links -->
                 <div class="hidden md:flex items-center space-x-8">
@@ -33,8 +37,8 @@
                                 class="ri-shopping-cart-line text-gray-400 hover:text-primary cursor-pointer transition-colors"></i>
                         </a>
                         @php
-                            $cart = auth()->user() ? \App\Models\Cart::where('user_id', auth()->id())->first() : null;
-                            $cartCount = $cart ? $cart->items()->count() : 0;
+$cart = auth()->user() ? \App\Models\Cart::where('user_id', auth()->id())->first() : null;
+$cartCount = $cart ? $cart->items()->count() : 0;
                         @endphp
                         <span id="cart-count"
                             class="absolute -top-2 -right-2 bg-primary text-black text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
@@ -53,7 +57,7 @@
 
                         <!-- Desktop Dropdown Menu -->
                         <div id="account-dropdown"
-                            class="hidden absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-md shadow-lg z-50">
+                            class="hidden absolute right-0 mt-2 w-48 bg-[#309983]/10 border border-gray-700 rounded-md shadow-lg z-50">
                             <a href="{{ route('user.orders') }}"
                                 class="block px-4 py-2 text-gray-300 hover:text-primary hover:bg-gray-700 rounded-md transition-colors">My
                                 Orders</a>
@@ -72,7 +76,7 @@
 
                     <!-- Mobile hamburger -->
                     <button id="mobile-menu-button" aria-expanded="false" aria-label="Open menu"
-                        class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-primary hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary">
+                        class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-primary hover:bg-[#309983]/10 focus:outline-none focus:ring-2 focus:ring-primary">
                         <i class="ri-menu-line text-2xl"></i>
                     </button>
                 </div>

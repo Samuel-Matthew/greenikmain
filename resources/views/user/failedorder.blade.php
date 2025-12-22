@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +24,14 @@
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-10">
 
+        <!-- Back Button -->
+        <div class="mb-6">
+            <a href="{{ route('user.orders') }}"
+                class="text-primary hover:text-primary/80 transition flex items-center gap-2 inline-block">
+                <i class="ri-arrow-left-line"></i> Back to Orders
+            </a>
+        </div>
+
         <!-- Failure Banner -->
         <div class="text-center mb-10">
             <!-- Changed to Red -->
@@ -42,10 +49,10 @@
 
             <!-- Optional Error Message if available -->
             @if(session('error'))
-            <p
-                class="mt-4 text-sm text-red-400 bg-red-500/10 inline-block px-4 py-2 rounded-lg border border-red-500/20">
-                <i class="fa-solid fa-circle-exclamation mr-2"></i> {{ session('error') }}
-            </p>
+                <p
+                    class="mt-4 text-sm text-red-400 bg-red-500/10 inline-block px-4 py-2 rounded-lg border border-red-500/20">
+                    <i class="fa-solid fa-circle-exclamation mr-2"></i> {{ session('error') }}
+                </p>
             @endif
         </div>
 
@@ -100,7 +107,7 @@
                     </div>
                     <ul class="divide-y divide-gray-800">
                         @foreach ($order->items as $item)
-                        @php
+                            @php
     $images = $item->product->image_url ?? [];
     $imageFile = '';
     if (is_array($images) && count($images) > 0) {
@@ -111,31 +118,31 @@
     } else {
         $imageFile = 'https://via.placeholder.com/100';
     }
-                        @endphp
-                        <li class="p-6 flex items-center opacity-75"> <!-- Added opacity to indicate not active -->
-                            <div
-                                class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-700 bg-gray-800">
-                                <img src="{{ $imageFile }}" alt="{{ $item->product->name }}"
-                                    class="h-full w-full object-cover object-center grayscale">
-                                <!-- Grayscale effect -->
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <h4 class="text-white font-medium">{{ $item->product->name }}</h4>
-                                <p class="text-gray-400 text-sm">{{ $item->product->category->name ?? 'N/A' }}</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-white font-medium">
-                                    ₦{{ number_format($item->price * $item->quantity, 2) }}</p>
-                                <p class="text-gray-500 text-sm">Qty: {{ $item->quantity }}</p>
-                            </div>
-                        </li>
+                            @endphp
+                            <li class="p-6 flex items-center opacity-75"> <!-- Added opacity to indicate not active -->
+                                <div
+                                    class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-700 bg-gray-800">
+                                    <img src="{{ $imageFile }}" alt="{{ $item->product->name }}"
+                                        class="h-full w-full object-cover object-center grayscale">
+                                    <!-- Grayscale effect -->
+                                </div>
+                                <div class="ml-4 flex-1">
+                                    <h4 class="text-white font-medium">{{ $item->product->name }}</h4>
+                                    <p class="text-gray-400 text-sm">{{ $item->product->category->name ?? 'N/A' }}</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-medium">
+                                        ₦{{ number_format($item->price * $item->quantity, 2) }}</p>
+                                    <p class="text-gray-500 text-sm">Qty: {{ $item->quantity }}</p>
+                                </div>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
 
                 <!-- Shipping & Billing Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gray-900 border border-gray-700 rounded-xl p-6">
+                    <div class="bg-red-500/5 border border-red-500/30 rounded-xl p-6">
                         <h3 class="text-white font-bold mb-4 flex items-center gap-2">
                             <i class="fa-solid fa-location-dot text-gray-400"></i> Shipping Address
                         </h3>
@@ -146,17 +153,21 @@
                             <span class="block">{{ $order->email }}</span>
                         </p>
                     </div>
-                    <div class="bg-gray-900 border border-gray-700 rounded-xl p-6">
+                    <div class="bg-red-500/5 border border-red-500/30 rounded-xl p-6">
                         <h3 class="text-white font-bold mb-4 flex items-center gap-2">
                             <i class="fa-solid fa-credit-card text-red-500"></i> Payment Attempt
                         </h3>
                         <div class="flex items-center gap-3 mb-2">
                             <i class="fa-brands fa-cc-visa text-gray-400 text-2xl"></i>
                             <span class="text-gray-300">
-                                {{ ucfirst($order->transaction->payment_method ?? 'Card') }}
+                                {{ ucfirst($order->transaction?->payment_method ?? $order->payment_method ?? 'Card') }}
                             </span>
                         </div>
                         <p class="text-red-400 text-xs mt-2"><i class="fa-solid fa-xmark mr-1"></i> Declined/Failed</p>
+                        @if($order->transaction)
+                            <p class="text-gray-400 text-xs mt-3">Reference: <span
+                                    class="text-gray-300 font-mono">{{ $order->transaction->reference }}</span></p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -193,8 +204,7 @@ $total = $order->total;
                     <!-- Updated Action Buttons -->
                     <div class="mt-8 space-y-3">
                         <!-- Retry Button -->
-                        {{-- Assuming you have a route to retry payment or go back to checkout --}}
-                        <a href="{{ route('checkout.index') }}"
+                        <a href="{{ route('user.checkout') }}"
                             class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-500 transition text-center block shadow-[0_0_15px_rgba(220,38,38,0.4)]">
                             <i class="fa-solid fa-rotate-right mr-2"></i> Try Again
                         </a>

@@ -7,6 +7,7 @@
     <title>GREENIK - Home</title>
     <link rel="stylesheet" href="./src/output.css">
     <link rel="stylesheet" href="./src/mycss.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link
@@ -345,92 +346,16 @@
             </div>
         </div> -->
     <!-- Footer -->
-    <footer class="bg-[#309983]/10 py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-2xl font-display text-primary mb-4">GREENIK</h3>
-                    <p class="text-gray-400 mb-6">Leading the clean energy revolution with innovative solar, wind, and
-                        sustainable power solutions for homes worldwide.</p>
-                    <div class="flex space-x-4">
-                        <div
-                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
-                            <i class="ri-facebook-fill"></i>
-                        </div>
-                        <div
-                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
-                            <i class="ri-twitter-fill"></i>
-                        </div>
-                        <div
-                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
-                            <i class="ri-instagram-fill"></i>
-                        </div>
-                        <div
-                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
-                            <i class="ri-linkedin-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Products</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Solar Panels</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Wind Turbines</a>
-                        </li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Battery Systems</a>
-                        </li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">EV Chargers</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Accessories</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Support</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Installation
-                                Guide</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Warranty</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Technical Support</a>
-                        </li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">FAQ</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Company</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">About Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Careers</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">News</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Partners</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Sustainability</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm">© 2024 GREENIK Solutions. All rights reserved.</p>
-                <div class="flex items-center space-x-6 mt-4 md:mt-0">
-                    <div class="w-8 h-8 flex items-center justify-center">
-                        <i class="ri-visa-fill text-gray-400"></i>
-                    </div>
-                    <div class="w-8 h-8 flex items-center justify-center">
-                        <i class="ri-mastercard-fill text-gray-400"></i>
-                    </div>
-                    <div class="w-8 h-8 flex items-center justify-center">
-                        <i class="ri-paypal-fill text-gray-400"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('components.footer')
+
 
 
 
     <!-- Quick View Modal -->
     <div id="quick-view-modal"
         class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-        <div class="bg-gray-900 rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
-            <div class=" bg-gray-900 border-b border-gray-800 p-6 flex items-center justify-between">
+        <div class="bg-[#309983]/10 rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+            <div class=" bg-[#309983]/10 border-b border-gray-800 p-6 flex items-center justify-between">
                 <h2 class="text-2xl font-bold" id="modal-product-title">Product Details</h2>
                 <button id="close-modal"
                     class="w-10 h-10 flex items-center justify-center hover:bg-gray-800 rounded-lg transition-colors">
@@ -520,7 +445,7 @@
                 <div class="border-t border-gray-800 pt-6 mt-8">
                     <h4 class="font-semibold mb-4">Customer Reviews</h4>
                     <div class="space-y-4">
-                        <div class="bg-gray-800 rounded-xl p-4">
+                        <div class="bg-[#309983]/20 rounded-xl p-4">
                             <div class="flex items-center justify-between mb-2">
                                 <div class="flex items-center gap-2">
                                     <div
@@ -540,7 +465,7 @@
                                 the performance exceeds expectations. Great value for the price.</p>
                             <div class="text-xs text-gray-400 mt-2">Verified Purchase • 2 months ago</div>
                         </div>
-                        <div class="bg-gray-800 rounded-xl p-4">
+                        <div class="bg-[#309983]/20 rounded-xl p-4">
                             <div class="flex items-center justify-between mb-2">
                                 <div class="flex items-center gap-2">
                                     <div

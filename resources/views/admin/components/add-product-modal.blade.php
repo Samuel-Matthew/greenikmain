@@ -2,7 +2,7 @@
     class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm" x-transition x-cloak>
     <div
         class="bg-dark-card w-full max-w-3xl rounded-xl border border-dark-border shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
-        <div class="flex justify-between items-center p-6 border-b border-dark-border bg-gray-900">
+        <div class="flex justify-between items-center p-6 border-b border-dark-border bg-[#309983]/10">
             <h3 class="text-xl font-bold text-white">Add New Product</h3>
             <button @click="modalOpen = false; resetForm()" class="text-gray-400 hover:text-white"><i
                     class="fas fa-times"></i></button>
@@ -101,7 +101,7 @@
                 <label class="block text-white font-medium">Photos & Media</label>
 
                 <!-- Drag & Drop Area -->
-                <div class="relative border-2 border-dashed border-gray-400 rounded-lg p-6 text-center cursor-pointer bg-gray-800 hover:bg-gray-700"
+                <div class="relative border-2 border-dashed border-gray-400 rounded-lg p-6 text-center cursor-pointer bg-[#309983]/10 hover:bg-[#309983]/20"
                     @dragover.prevent="dragging = true" @dragleave.prevent="dragging = false"
                     @drop.prevent="handleDrop($event)" @click="$refs.fileInput.click()"
                     :class="{'border-blue-500 bg-gray-700': dragging}">

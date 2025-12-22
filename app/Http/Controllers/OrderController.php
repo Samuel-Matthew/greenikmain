@@ -36,6 +36,26 @@ class OrderController extends Controller
     }
 
     /**
+     * Display failed order details.
+     */
+    public function failedOrder(Order $order)
+    {
+        // Check if user owns this order
+        if ($order->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized');
+        }
+
+        // Check if order status is cancelled
+        if ($order->status !== 'cancelled') {
+            abort(403, 'This order was not cancelled');
+        }
+
+        $order->load('items.product', 'transaction');
+
+        return view('user.failedorder', compact('order'));
+    }
+
+    /**
      * Generate order invoice.
      */
     public function invoice(Order $order)

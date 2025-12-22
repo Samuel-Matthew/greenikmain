@@ -7,6 +7,7 @@
     <title>Order Confirmed - GREENIK</title>
     <link rel="stylesheet" href="./src/output.css">
     <link rel="stylesheet" href="./src/mycss.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700&display=swap"
@@ -84,16 +85,16 @@
                     <ul class="divide-y divide-gray-700">
                         @foreach ($order->items as $item)
                             @php
-                                $images = $item->product->image_url ?? [];
-                                $imageFile = '';
-                                if (is_array($images) && count($images) > 0) {
-                                    $imageFile = $images[0];
-                                    if (!str_starts_with($imageFile, 'http')) {
-                                        $imageFile = asset('storage/' . $imageFile);
-                                    }
-                                } else {
-                                    $imageFile = 'https://via.placeholder.com/100';
-                                }
+    $images = $item->product->image_url ?? [];
+    $imageFile = '';
+    if (is_array($images) && count($images) > 0) {
+        $imageFile = $images[0];
+        if (!str_starts_with($imageFile, 'http')) {
+            $imageFile = asset('storage/' . $imageFile);
+        }
+    } else {
+        $imageFile = 'https://via.placeholder.com/100';
+    }
                             @endphp
                             <li class="p-6 flex items-center">
                                 <div
@@ -144,10 +145,10 @@
                 <div class="bg-gray-900 border border-gray-700 rounded-xl p-6">
                     <h3 class="text-white font-bold mb-4">Payment Summary</h3>
                     @php
-                        $subtotal = $order->subtotal;
-                        $shipping = $order->shipping_fee;
-                        $tax = $order->tax;
-                        $total = $order->total;
+$subtotal = $order->subtotal;
+$shipping = $order->shipping_fee;
+$tax = $order->tax;
+$total = $order->total;
                     @endphp
                     <div class="space-y-3">
                         <div class="flex justify-between text-sm text-gray-400">

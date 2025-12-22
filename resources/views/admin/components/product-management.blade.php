@@ -74,7 +74,7 @@
                         $brand = $product->brand ?? '-';
                         $price = isset($product->price) ? number_format($product->price, 2) : '0.00';
                     @endphp
-                    <tr class="hover:bg-gray-800/50 transition">
+                    <tr class="hover:bg-[#309983]/10 transition">
                         <td class="p-4 flex items-center gap-3">
                             <img src="{{ $img }}" class="w-10 h-10 rounded object-cover">
                             <span class="font-medium text-white">{{ $product->name }}</span>
@@ -96,18 +96,18 @@
                                 class="px-2 py-1 {{ $statusBadge }} rounded text-xs border">{{ $statusText }}</span></td>
                         <td class="p-4 text-right">
                             <button @click="loadProductEdit({
-                                            id: {{ $product->id }},
-                                            name: '{{ addslashes($product->name) }}',
-                                            category_id: '{{ $product->category_id }}',
-                                            brand: '{{ addslashes($product->brand ?? '') }}',
-                                            description: '{{ addslashes($product->description) }}',
-                                            price: '{{ $product->price }}',
-                                            stock: '{{ $product->stock }}',
-                                            sku: '{{ $product->sku ?? '' }}',
-                                            meta_title: '{{ addslashes($product->meta_title ?? '') }}',
-                                            meta_description: '{{ addslashes($product->meta_description ?? '') }}',
-                                            image_url: {{ json_encode($product->image_url ?? []) }}
-                                        })" class="text-gray-400 hover:text-white mx-1"><i
+                                                                id: {{ $product->id }},
+                                                                name: '{{ addslashes($product->name) }}',
+                                                                category_id: '{{ $product->category_id }}',
+                                                                brand: '{{ addslashes($product->brand ?? '') }}',
+                                                                description: '{{ addslashes($product->description) }}',
+                                                                price: '{{ $product->price }}',
+                                                                stock: '{{ $product->stock }}',
+                                                                sku: '{{ $product->sku ?? '' }}',
+                                                                meta_title: '{{ addslashes($product->meta_title ?? '') }}',
+                                                                meta_description: '{{ addslashes($product->meta_description ?? '') }}',
+                                                                image_url: {{ json_encode($product->image_url ?? []) }}
+                                                            })" class="text-gray-400 hover:text-white mx-1"><i
                                     class="fas fa-edit"></i></button>
                             <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="inline-block"
                                 onsubmit="return confirm('Delete this product?');">

@@ -8,6 +8,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link rel="stylesheet" href="./src/output.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./src/mycss.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -462,7 +463,7 @@
     </section>
 
     <!-- footer -->
-    <footer class="bg-[#309983]/10 py-16">
+    <!-- <footer class="bg-[#309983]/10 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -538,8 +539,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
+    @include('components.footer')
 
 
         <!-- <script src="js/counter-animation.js"></script>

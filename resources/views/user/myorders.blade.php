@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link rel="stylesheet" href="./src/output.css">
     <link rel="stylesheet" href="./src/mycss.css">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700&display=swap"
@@ -48,7 +49,11 @@
                                         <p class="text-white font-semibold">GRN-{{ str_pad($order->id, 5, '0', STR_PAD_LEFT) }}</p>
                                     </div>
                                 </div>
-                                <a href="{{ route('order.details', $order->id) }}" class="text-primary text-sm font-medium hover:text-primary/80 transition">View Order</a>
+                                @if($order->status === 'cancelled')
+                                    <a href="{{ route('order.failed', $order->id) }}" class="text-primary text-sm font-medium hover:text-primary/80 transition">View Order</a>
+                                @else
+                                    <a href="{{ route('order.details', $order->id) }}" class="text-primary text-sm font-medium hover:text-primary/80 transition">View Order</a>
+                                @endif
                             </div>
 
                             <!-- Card Body -->
