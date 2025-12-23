@@ -1,30 +1,35 @@
-FROM php:8.2-cli
+# Use a version that includes a web server helper or stick to PHP FPM
+FROM richarvey/nginx-php-fpm:latest
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git unzip libpq-dev \
-    && docker-php-ext-install pdo pdo_pgsql
+# 1. Set the working directory to the standard web path
+WORKDIR /var/www/html
 
-# Install Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+# 2. Install system dependencies for PostgreSQL (needed for e-commerce)
+RUN apt-get update && apt-get install -y libpq-dev
 
-# Set working directory
-WORKDIR /var/www
-
-# Copy project files
+# 3. Copy project files
 COPY . .
 
-# Install PHP dependencies
+# 4. Set environment variables for Render
+ENV WEBROOT /var/www/html/public
+ENV APP_ENV production
+
+# 5. Install dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Fix permissions for Laravel
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+# 6. Ensure storage directories exist (prevents the chown error)
+RUN mkdir -p storage/framework/sessions \
+    storage/framework/views \
+    storage/framework/cache \
+    bootstrap/cache
 
+# 7. Fix permissions using the correct relative paths
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Expose port
+# 8. Render uses port 10000 by default, but this image handles it via Nginx
 EXPOSE 10000
 
-# Start Laravel
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=10000
-
+# 9. Start-up: Run migrations and start the server
+# Note: In production, we use a script or combined command
+CMD php artisan migrate --force && /start.sh
