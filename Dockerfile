@@ -1,7 +1,8 @@
 FROM richarvey/nginx-php-fpm:latest
 
-# 1. Install system dependencies (Alpine syntax)
-RUN apk add --no-cache postgresql-dev nodejs npm
+# 1. Install system dependencies
+# We use 'nodejs-current' to get the latest version (Node 22+) in Alpine
+RUN apk add --no-cache postgresql-dev nodejs-current npm
 
 WORKDIR /var/www/html
 COPY . .
