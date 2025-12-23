@@ -17,6 +17,10 @@ COPY . .
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
+# Fix permissions for Laravel
+RUN chmod -R 775 storage bootstrap/cache
+
+
 # Expose port
 EXPOSE 10000
 
