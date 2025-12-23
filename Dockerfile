@@ -18,7 +18,8 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader
 
 # Fix permissions for Laravel
-RUN chmod -R 775 storage bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 
 # Expose port
