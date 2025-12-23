@@ -21,12 +21,16 @@ Route::get('/db-test', function () {
     return 'DB CONNECTED';
 });
 
-
 Route::get('/', function () {
-    return view('guest.index');
-
-    // return redirect('/admin/dashboard');
+    return 'Server is working!';
 });
+
+
+// Route::get('/', function () {
+//     return view('guest.index');
+
+//     // return redirect('/admin/dashboard');
+// });
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
