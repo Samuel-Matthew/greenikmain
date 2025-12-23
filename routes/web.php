@@ -14,6 +14,14 @@ use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
+use Illuminate\Support\Facades\DB;
+
+Route::get('/db-test', function () {
+    DB::connection()->getPdo();
+    return 'DB CONNECTED';
+});
+
+
 Route::get('/', function () {
     return view('guest.index');
 
