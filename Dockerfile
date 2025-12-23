@@ -32,4 +32,6 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 EXPOSE 10000
 
 # 7. Final Start Command
-CMD php artisan migrate --force && php artisan storage:link && /start.sh
+CMD php artisan config:clear && php artisan migrate --force && php artisan storage:link && /start.sh
+
+
