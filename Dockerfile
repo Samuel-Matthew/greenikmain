@@ -29,9 +29,8 @@ RUN mkdir -p storage/framework/sessions \
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-EXPOSE 10000
+EXPOSE 80
+
 
 # 7. Final Start Command
-CMD php artisan config:clear && php artisan migrate --force && php artisan storage:link && /start.sh
-
-
+CMD /start.sh
