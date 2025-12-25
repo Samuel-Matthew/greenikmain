@@ -21,13 +21,13 @@ Route::get('/db-test', function () {
     return 'DB CONNECTED';
 });
 
-Route::get('/', function () {
-    return 'Server is working!';
-});
+// Route::get('/', function () {
+//     return 'Server is working!';
+// });
 
 
 // Route::get('/', function () {
-//     return view('guest.index');
+//     return view('user.index');
 
 //     // return redirect('/admin/dashboard');
 // });
@@ -53,7 +53,7 @@ require __DIR__ . '/auth.php';
 //     });
 // });
 
-// Route::get('/', [PageController::class, 'index'])->name('index');
+Route::get('/', [PageController::class, 'index'])->name('index');
 Route::get('/about-us', [PageController::class, 'about'])->name('about');
 Route::get('/contact-us', [PageController::class, 'contact'])->name('contact');
 Route::get('/solution', [PageController::class, 'solution'])->name('solutions');
