@@ -72,10 +72,10 @@ EXPOSE 80
 
 
 
-CMD php artisan config:clear \
- && php artisan cache:clear \
+CMD php artisan key:generate --force \
+ && php artisan migrate --force || true \
+ && php artisan config:clear \
  && php artisan route:clear \
  && php artisan view:clear \
- && php artisan migrate --force \
  && /start.sh
 
