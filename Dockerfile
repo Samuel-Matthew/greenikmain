@@ -40,7 +40,6 @@ FROM richarvey/nginx-php-fpm:latest
 
 COPY nginx.conf /etc/nginx/sites-available/default.conf
 
-
 RUN apk add --no-cache \
     mysql-client \
     mysql-dev \
@@ -55,9 +54,8 @@ COPY . .
 ENV WEBROOT=/var/www/html/public
 ENV APP_ENV=production
 ENV COMPOSER_ALLOW_SUPERUSER=1
-ENV SKIP_COMPOSER=1
 
-RUN composer install --no-dev --optimize-autoloader --working-dir=/var/www/html
+RUN composer install --no-dev --optimize-autoloader
 
 RUN npm install && npm run build
 
@@ -70,9 +68,9 @@ RUN mkdir -p storage/framework/sessions \
 RUN chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
+RUN php artisan storage:link || true
+
 EXPOSE 80
-
-
 
 CMD php artisan key:generate --force \
  && php artisan migrate --force || true \
@@ -80,4 +78,3 @@ CMD php artisan key:generate --force \
  && php artisan route:clear \
  && php artisan view:clear \
  && /start.sh
-
