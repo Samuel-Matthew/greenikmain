@@ -36,8 +36,10 @@
 # CMD /start.sh
 
 
-
 FROM richarvey/nginx-php-fpm:latest
+
+COPY nginx.conf /etc/nginx/sites-available/default.conf
+
 
 RUN apk add --no-cache \
     mysql-client \
