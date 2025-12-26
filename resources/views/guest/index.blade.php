@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GREENIK - Home</title>
-    <link rel="stylesheet" href="./src/output.css">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
@@ -25,7 +24,7 @@
 </head>
 
 <body class="bg-black text-white font-sans overflow-x-hidden">
-    @include('components.guestheader');
+    @include('components.guestheader')
 
     <!-- hero -->
     <section class="relative min-h-screen hero-bg flex items-center" data-aos="fade-up">
