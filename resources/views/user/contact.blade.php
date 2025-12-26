@@ -771,11 +771,7 @@
             });
         </script> -->
 
-    <!-- <script src="js/counter-animation.js"></script>
-    <script src="js/appointment-fxn.js"></script>
-    <script src="js/chat-fxn.js"></script>
-    <script src="js/search-functionality.js"></script>
-    <script src="js/nav.js"></script> -->
+   
 
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.0/dist/aos.js"></script>

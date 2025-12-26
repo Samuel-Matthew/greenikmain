@@ -490,9 +490,7 @@
     </div>
 
 
-    <!-- <script src="js/product.js"></script>
-    <script src="js/search-functionality.js"></script>
-    <script src="js/nav.js"></script> -->
+
 
     <!-- <script>
         document.addEventListener('DOMContentLoaded', function() {
