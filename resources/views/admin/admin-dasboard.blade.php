@@ -51,8 +51,9 @@ if (!isset($categories)) {
     </style>
 </head>
 
-<body class="bg-dark-bg text-gray-300 font-sans antialiased" x-data="dashboardData()" x-init="init()" x-cloak>
 
+<body class="bg-dark-bg text-gray-300 font-sans antialiased" x-data="dashboardData()" x-init="init()" x-cloak>
+<!-- js -->
     <script>
         function dashboardData() {
             return {
