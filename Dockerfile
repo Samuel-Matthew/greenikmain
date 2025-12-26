@@ -53,6 +53,7 @@ COPY . .
 ENV WEBROOT=/var/www/html/public
 ENV APP_ENV=production
 ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV SKIP_COMPOSER=1
 
 RUN composer install --no-dev --optimize-autoloader --working-dir=/var/www/html
 
