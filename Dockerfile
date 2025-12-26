@@ -70,10 +70,12 @@ RUN chown -R www-data:www-data storage bootstrap/cache \
 
 EXPOSE 80
 
-RUN php artisan config:clear \
+
+
+CMD php artisan config:clear \
  && php artisan cache:clear \
  && php artisan route:clear \
- && php artisan view:clear
+ && php artisan view:clear \
+ && php artisan migrate --force \
+ && /start.sh
 
-
-CMD /start.sh
