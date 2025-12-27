@@ -21,5 +21,5 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // ADD THIS LINE TEMPORARILY
-        $exceptions->shouldRenderJsonWhen(fn() => true);
+        // $exceptions->shouldRenderJsonWhen(fn() => true);
     })->create();
